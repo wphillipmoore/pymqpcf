@@ -10,7 +10,7 @@
 Record the exact bootstrap steps used to create the `pymqpcf` repository.
 
 ## Assumptions
-- Repository created under the `wphillipmoore` GitHub account.
+- Repository created under the `wphillipmoore` GitHub account (public).
 - Default branch is `develop`.
 - Python virtual environment created at `.venv`.
 
@@ -98,6 +98,12 @@ python3 -m venv .venv
 source .venv/bin/activate && poetry lock
 source .venv/bin/activate && poetry export -f requirements.txt --output requirements.txt --without-hashes
 source .venv/bin/activate && poetry export -f requirements.txt --output requirements-dev.txt --without-hashes --with dev
+
+git add .
+git commit -F .git/COMMIT_EDITMSG.bootstrap
+
+gh repo create wphillipmoore/pymqpcf --public --source . --remote origin --push
+gh repo view wphillipmoore/pymqpcf --json defaultBranchRef
 ```
 
 ## Manual edits
