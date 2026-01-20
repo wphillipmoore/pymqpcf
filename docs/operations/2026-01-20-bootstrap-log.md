@@ -33,35 +33,35 @@ cp /Users/pmoore/dev/github/standard-actions/.markdownlint.json /Users/pmoore/de
 cp /Users/pmoore/dev/github/standard-actions/LICENSE /Users/pmoore/dev/github/pymqpcf/LICENSE
 
 cat <<'EOF' > /Users/pmoore/dev/github/pymqpcf/README.md
-...
+<content recorded in README.md at this commit>
 EOF
 
 cat <<'EOF' > /Users/pmoore/dev/github/pymqpcf/AGENTS.md
-...
+<content recorded in AGENTS.md at this commit>
 EOF
 
 cat <<'EOF' > /Users/pmoore/dev/github/pymqpcf/docs/standards-and-conventions.md
-...
+<content recorded in docs/standards-and-conventions.md at this commit>
 EOF
 
 cat <<'EOF' > /Users/pmoore/dev/github/pymqpcf/docs/development/overview.md
-...
+<content recorded in docs/development/overview.md at this commit>
 EOF
 
 cat <<'EOF' > /Users/pmoore/dev/github/pymqpcf/docs/development/environment-and-tooling.md
-...
+<content recorded in docs/development/environment-and-tooling.md at this commit>
 EOF
 
 cat <<'EOF' > /Users/pmoore/dev/github/pymqpcf/docs/development/tooling-dependencies.md
-...
+<content recorded in docs/development/tooling-dependencies.md at this commit>
 EOF
 
 cat <<'EOF' > /Users/pmoore/dev/github/pymqpcf/docs/development/validation.md
-...
+<content recorded in docs/development/validation.md at this commit>
 EOF
 
 cat <<'EOF' > /Users/pmoore/dev/github/pymqpcf/docs/decisions/0001-repo-structure.md
-...
+<content recorded in docs/decisions/0001-repo-structure.md at this commit>
 EOF
 
 cp /Users/pmoore/dev/github/pymqrest/.github/ISSUE_TEMPLATE/config.yml \
@@ -83,15 +83,15 @@ cp /Users/pmoore/dev/github/pymqrest/scripts/dev/validate_version.py \
   /Users/pmoore/dev/github/pymqpcf/scripts/dev/validate_version.py
 
 cat <<'EOF' > /Users/pmoore/dev/github/pymqpcf/src/pymqpcf/__init__.py
-...
+<content recorded in src/pymqpcf/__init__.py at this commit>
 EOF
 
 cat <<'EOF' > /Users/pmoore/dev/github/pymqpcf/tests/test_smoke.py
-...
+<content recorded in tests/test_smoke.py at this commit>
 EOF
 
 cat <<'EOF' > /Users/pmoore/dev/github/pymqpcf/pyproject.toml
-...
+<content recorded in pyproject.toml at this commit>
 EOF
 
 python3 -m venv .venv
