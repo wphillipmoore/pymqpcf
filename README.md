@@ -37,5 +37,5 @@ tests/
 - Pre-releases use standard pre-release identifiers.
 
 ## Validation
-- Full validation: `poetry run python3 scripts/dev/validate_local.py`
+- Full validation: `python3 scripts/dev/validate_local.py`
 - Docs-only validation: `python3 scripts/dev/validate_docs.py`
