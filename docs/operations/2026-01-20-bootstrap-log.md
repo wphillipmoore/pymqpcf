@@ -1,21 +1,25 @@
 # 2026-01-20 Bootstrap Log
 
 ## Table of Contents
+
 - [Purpose](#purpose)
 - [Assumptions](#assumptions)
 - [Commands executed](#commands-executed)
 - [Manual edits](#manual-edits)
 
 ## Purpose
+
 Record the exact bootstrap steps used to create the `pymqpcf` repository.
 
 ## Assumptions
+
 - Repository created under the `wphillipmoore` GitHub account (public).
 - Default branch is `develop`.
 - Python virtual environment created at `.venv`.
 
 ## Commands executed
-```
+
+```bash
 mkdir -p /Users/pmoore/dev/github/pymqpcf
 git init -b develop
 
@@ -107,6 +111,7 @@ gh repo view wphillipmoore/pymqpcf --json defaultBranchRef
 ```
 
 ## Manual edits
+
 - Updated coverage target in `.github/workflows/ci.yml` to `pymqpcf`.
 - Updated coverage target in `scripts/dev/validate_local.py` to `pymqpcf`.
 - Updated the description in `scripts/dev/validate_version.py` to `pymqpcf`.

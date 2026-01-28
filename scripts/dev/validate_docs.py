@@ -10,7 +10,7 @@ import shutil
 import subprocess
 from pathlib import Path
 
-MARKDOWNLINT_VERSION = "0.41.0"
+MIN_MARKDOWNLINT_VERSION = "0.41.0"
 
 
 def parse_arguments() -> argparse.Namespace:
@@ -47,42 +47,51 @@ def gather_default_paths() -> list[str]:
     return [str(path) for path in unique_paths]
 
 
+def parse_version(version_output: str) -> tuple[int, int, int] | None:
+    """Parse a semantic version from markdownlint output."""
+    parts = version_output.strip().split(".")
+    if len(parts) != 3 or not all(part.isdigit() for part in parts):
+        return None
+    return int(parts[0]), int(parts[1]), int(parts[2])
+
+
 def resolve_markdownlint() -> tuple[str, str]:
     """Resolve markdownlint binary and version."""
     markdownlint = shutil.which("markdownlint")
-    if markdownlint:
-        version_output = subprocess.run(
-            (markdownlint, "--version"), check=True, text=True, capture_output=True
-        ).stdout.strip()
-        if version_output != MARKDOWNLINT_VERSION:
-            raise SystemExit(
-                "markdownlint version mismatch. "
-                f"Expected {MARKDOWNLINT_VERSION}, found {version_output}."
-            )
-        return markdownlint, version_output
-
-    npx = shutil.which("npx")
-    if not npx:
+    if not markdownlint:
         raise SystemExit(
             "markdownlint is required for docs-only validation. "
-            "Install markdownlint or ensure npx is available."
+            f"Install markdownlint >= {MIN_MARKDOWNLINT_VERSION} and ensure it is on PATH."
         )
 
-    return npx, MARKDOWNLINT_VERSION
+    version_output = subprocess.run(
+        (markdownlint, "--version"), check=True, text=True, capture_output=True
+    ).stdout.strip()
+    parsed_version = parse_version(version_output)
+    if not parsed_version:
+        raise SystemExit(
+            "Unable to parse markdownlint version output: "
+            f"{version_output!r}."
+        )
+
+    minimum = parse_version(MIN_MARKDOWNLINT_VERSION)
+    if parsed_version < minimum:
+        raise SystemExit(
+            "markdownlint version too old. "
+            f"Expected >= {MIN_MARKDOWNLINT_VERSION}, found {version_output}."
+        )
+    return markdownlint, version_output
 
 
 def run_markdownlint(paths: list[str]) -> int:
     """Run markdownlint using the resolved toolchain."""
-    markdownlint_cmd, version = resolve_markdownlint()
+    markdownlint_cmd, _version = resolve_markdownlint()
 
     if not paths:
         print("No markdown files found to validate.")
         return 0
 
-    if markdownlint_cmd.endswith("markdownlint"):
-        command = (markdownlint_cmd, *paths)
-    else:
-        command = (markdownlint_cmd, "--yes", f"markdownlint-cli@{version}", *paths)
+    command = (markdownlint_cmd, *paths)
     print(f"Running: {' '.join(command)}")
     return subprocess.run(command).returncode
 
