@@ -85,7 +85,7 @@ def resolve_markdownlint() -> tuple[str, str]:
 
 def run_markdownlint(paths: list[str]) -> int:
     """Run markdownlint using the resolved toolchain."""
-    markdownlint_cmd, version = resolve_markdownlint()
+    markdownlint_cmd, _version = resolve_markdownlint()
 
     if not paths:
         print("No markdown files found to validate.")
