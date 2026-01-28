@@ -26,8 +26,8 @@
 - Validation is required for non-docs-only changes; run the canonical command below.
 - `python3 scripts/dev/validate_local.py`
 - Docs-only changes: `python3 scripts/dev/validate_docs.py`
-- Docs-only validation requires `markdownlint` `0.41.0` on the PATH or `npx`
-  to run the pinned version.
+- Docs-only validation requires `markdownlint` >= `0.41.0` on the PATH
+  (install via Homebrew).
 
 ## Tooling requirement
 
