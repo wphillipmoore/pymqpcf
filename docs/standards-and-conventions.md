@@ -10,9 +10,7 @@ This repository follows the canonical standards at:
 
 ## Canonical references
 
-<!-- markdownlint-disable MD018 -->
-#include ../standards-and-conventions/docs/standards-and-conventions.md
-<!-- markdownlint-enable MD018 -->
+<!-- include: ../standards-and-conventions/docs/standards-and-conventions.md -->
 
 ## Project-specific overlay
 
