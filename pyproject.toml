@@ -22,6 +22,13 @@ dev = [
     "pytest-cov",
     "pip-audit",
 ]
+docs = [
+    # Anchor: 7.x lacks MyST fenced directive support; see docs/dependencies/sphinx.md
+    "sphinx>=8.0",
+    # Anchor: 3.x lacks Sphinx 8+ compatibility; see docs/dependencies/myst-parser.md
+    "myst-parser>=4.0",
+    "furo",
+]
 
 [tool.setuptools]
 package-dir = {"" = "src"}

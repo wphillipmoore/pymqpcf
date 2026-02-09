@@ -80,9 +80,7 @@ def resolve_base_reference(base_reference: str) -> str:
     remote_reference = f"origin/{base_reference}"
     if git_reference_exists(remote_reference):
         return remote_reference
-    raise SystemExit(
-        "Base reference not found. Fetch the base branch before running version checks."
-    )
+    raise SystemExit("Base reference not found. Fetch the base branch before running version checks.")
 
 
 def parse_version(version_value: str) -> Version:
