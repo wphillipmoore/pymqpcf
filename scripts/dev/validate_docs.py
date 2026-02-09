@@ -69,16 +69,12 @@ def resolve_markdownlint() -> tuple[str, str]:
     ).stdout.strip()
     parsed_version = parse_version(version_output)
     if not parsed_version:
-        raise SystemExit(
-            "Unable to parse markdownlint version output: "
-            f"{version_output!r}."
-        )
+        raise SystemExit(f"Unable to parse markdownlint version output: {version_output!r}.")
 
     minimum = parse_version(MIN_MARKDOWNLINT_VERSION)
     if parsed_version < minimum:
         raise SystemExit(
-            "markdownlint version too old. "
-            f"Expected >= {MIN_MARKDOWNLINT_VERSION}, found {version_output}."
+            f"markdownlint version too old. Expected >= {MIN_MARKDOWNLINT_VERSION}, found {version_output}."
         )
     return markdownlint, version_output
 

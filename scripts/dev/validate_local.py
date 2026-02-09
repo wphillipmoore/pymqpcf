@@ -95,8 +95,7 @@ def main() -> int:
         base_ref = resolve_fallback_base_ref()
     if not base_ref:
         raise SystemExit(
-            "Base ref required for version validation. "
-            "Pass --base-ref or ensure refs/remotes/origin/HEAD exists."
+            "Base ref required for version validation. Pass --base-ref or ensure refs/remotes/origin/HEAD exists."
         )
 
     for command in build_commands(base_ref):

@@ -164,9 +164,7 @@ def validate_dependency_specs() -> None:
                 )
 
             if not record_path.is_file():
-                errors.append(
-                    f"{section_name}:{dependency_name} missing dependency record at {record_path}."
-                )
+                errors.append(f"{section_name}:{dependency_name} missing dependency record at {record_path}.")
 
     validate_section("project.dependencies", dependencies_section)
 

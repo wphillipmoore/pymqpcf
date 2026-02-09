@@ -24,8 +24,7 @@ def validate_uv_version() -> None:
     uv_path = shutil.which("uv")
     if not uv_path:
         raise SystemExit(
-            "Missing uv executable. Install uv "
-            f"{UV_VERSION} (for example: python3 -m pip install uv=={UV_VERSION})."
+            f"Missing uv executable. Install uv {UV_VERSION} (for example: python3 -m pip install uv=={UV_VERSION})."
         )
     result = subprocess.run((uv_path, "--version"), check=True, text=True, capture_output=True)
     version_output = result.stdout.strip()
@@ -33,10 +32,7 @@ def validate_uv_version() -> None:
         raise SystemExit(f"Unexpected uv version output: {version_output}")
     version_value = version_output.split()[1]
     if version_value != UV_VERSION:
-        raise SystemExit(
-            "uv version mismatch. "
-            f"Expected {UV_VERSION}, found {version_value}."
-        )
+        raise SystemExit(f"uv version mismatch. Expected {UV_VERSION}, found {version_value}.")
 
 
 def read_shebang(script_path: Path) -> str | None:
@@ -68,14 +64,10 @@ def validate_shebang(script_path: Path, expected_python: Path) -> None:
 
     interpreter_path = Path(interpreter)
     if not interpreter_path.is_absolute():
-        raise SystemExit(
-            f"Unexpected shebang in {script_path}: {shebang}. Rebuild the venv."
-        )
+        raise SystemExit(f"Unexpected shebang in {script_path}: {shebang}. Rebuild the venv.")
 
     if not interpreter_path.exists():
-        raise SystemExit(
-            f"Broken shebang in {script_path}: {interpreter_path} not found. Rebuild the venv."
-        )
+        raise SystemExit(f"Broken shebang in {script_path}: {interpreter_path} not found. Rebuild the venv.")
 
     if interpreter_path.resolve() != expected_python.resolve():
         raise SystemExit(
@@ -100,9 +92,7 @@ def validate_venv() -> None:
     for tool in REQUIRED_TOOLS:
         tool_path = bin_dir / tool
         if not tool_path.exists():
-            raise SystemExit(
-                f"Missing venv tool: {tool_path}. Run: uv sync --group dev"
-            )
+            raise SystemExit(f"Missing venv tool: {tool_path}. Run: uv sync --group dev")
         validate_shebang(tool_path, python_path)
 
 
